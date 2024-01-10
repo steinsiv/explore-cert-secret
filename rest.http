@@ -1,0 +1,16 @@
+## Example REST template for leg 1 in authorization code flow
+@tenant_id=
+@client_id=
+
+@scope=openid profile
+@state=123456789
+@redirect_uri=http://localhost/callback
+
+GET https://login.microsoftonline.com/{{tenant_id}}/oauth2/v2.0/authorize
+    ?client_id={{client_id}}
+    &response_type=code
+    &redirect_uri={{redirect_uri}}
+    &response_mode=query
+    &scope={{scope}}
+    &state={{state}}
+
