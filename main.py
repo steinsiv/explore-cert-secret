@@ -6,12 +6,12 @@ from uuid import uuid4
 from base64 import b64encode
 from cryptography.hazmat.primitives import serialization
 
-
-# These are the 4 values you need to set before running this script
+# These are the values you need to set before running this script
 TENANT_ID=""
 CLIENT_ID=""
 THUMBPRINT=""
 AUTHORIZATION_CODE=""
+REDIRECT_URI="http://localhost/callback"
 
 CERT_X5T=b64encode(bytes.fromhex(THUMBPRINT)).decode("utf-8") 
 
@@ -30,14 +30,13 @@ headers = {
     "x5t": CERT_X5T
     }
 
-now = int(time())
 claims = {
     "aud": token_url,
-    "exp": now + 10*60,  # Token expiry time (10 minutes)
+    "exp": int(time()) + 10*60,  # Token expiry time (10 minutes)
     "iss": CLIENT_ID,
     "jti": uuid4().hex,
     "sub": CLIENT_ID,
-    "iat": now,
+    "iat": int(time()),
 }
 
 # Create and sign the JWT
@@ -47,7 +46,7 @@ encoded_jwt = jwt.encode(claims, private_key(), algorithm="RS256", headers=heade
 data = {
     "grant_type": "authorization_code",
     "code": AUTHORIZATION_CODE,
-    "redirect_uri": "http://localhost/callback",
+    "redirect_uri": REDIRECT_URI,
     "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
     "client_assertion": encoded_jwt
 }

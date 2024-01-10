@@ -1,4 +1,4 @@
-# explore-cert-secret
+# explore-cert-secret 
 
 Simple explore code using certificates over `client_secret` in the leg2 of OAuth2 authorization code exchange. Assertion is here a signed JWT.
 
@@ -18,24 +18,23 @@ Enter pass phrase for mysimplecert.key:
 ```
 
 #### 3. Checking cert and SHA1 thumbprint
-```
+```sh
 ❯ openssl x509 -in mysimplecert.crt -text -noout
 ❯ openssl x509 -in mysimplecert.crt -noout -sha1 -fingerprint
 ```
 
-## Upload `mysimplecert.crt` to Azure 
+## Upload certificate to Azure 
 
 `App-Registrations -> Certificates & Secrets`
 
-Verify thumbprint, and check redirect URL for the application.
+Upload `mysimplecert.crt`, verify thumbprint, and remember to check redirect URL for the application.
 
-We are now ready to test getting tokens using client certs.  
 The code in leg 2, `main.py` assumes you have an authorization code already
 
 ## LEG 1: Get authorization code
 
 Visit URL in browser:
-```sh
+```ts
 https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/authorize
 ?client_id=<CLIENT_ID>
 &response_type=code
@@ -66,7 +65,7 @@ See `main.py` for retrieving tokens using certificate instead of `client_secret`
 }
 ```
 
-Refs:  
+# Refs
 https://security.stackexchange.com/questions/262630/oauth2-what-is-the-advantage-of-using-certificate-over-client-secret-credentia  
-https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#second-case-access-token-request-with-a-certificate
+https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#second-case-access-token-request-with-a-certificate  
 https://learn.microsoft.com/en-us/entra/identity-platform/certificate-credentials
