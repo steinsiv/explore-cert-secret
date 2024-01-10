@@ -7,14 +7,11 @@ Simple explore code using certificates over `client_secret` in the leg2 of OAuth
 #### 1. Create private key, here encrypted with AES256
 ```sh
 ❯ openssl genrsa -aes256 -out mysimplecert.key 2048
-Enter PEM pass phrase:
-Verifying - Enter PEM pass phrase:
 ```
 
 #### 2. Create self signed certificate X.509 (creating and processing CSR). SHA256 digest will be signed.
 ```sh
 ❯ openssl req -x509 -key mysimplecert.key -sha256 -days 365 -out mysimplecert.crt -subj "/CN=MySimpleAppCert"
-Enter pass phrase for mysimplecert.key:
 ```
 
 #### 3. Checking cert and SHA1 thumbprint
