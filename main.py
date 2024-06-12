@@ -9,6 +9,7 @@ from cryptography.hazmat.primitives import serialization
 # These are the values you need to set before running this script
 TENANT_ID=""
 CLIENT_ID=""
+CLIENT_SECRET="ABCD1234"
 THUMBPRINT=""
 AUTHORIZATION_CODE=""
 REDIRECT_URI="http://localhost/callback"
