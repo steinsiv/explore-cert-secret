@@ -1,0 +1,17 @@
+Image: 
+    mcr.microsoft.com/devcontainers/universal:2
+
+Features:
+	"ghcr.io/devcontainers/features/azure-cli:1": {},
+	"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+	"ghcr.io/eitsupi/devcontainer-features/jq-likes:2.1.0": {}
+
+Extensions:
+    "ms-vscode-remote.remote-containers",
+    "GitHub.codespaces",
+    "mhutchie.git-graph",
+    "lzm0x219.vscode-markdown-github"    
+
++ Trufflehog
+
+Enjoy!
